@@ -32,7 +32,8 @@ public class Main {
             + "5 - Listar todas las motos.\n"
             + "6 - Mostrar las cesiones realizadas.\n"
             + "7 - Suma los Gastos a una moto.\n"
-            + "8 - Salir del programa.\n\n";
+            + "8 - Elimina un miembro.\n"
+            + "9 - Salir del programa.\n\n";
     ListadoSocios ls;
     ListadoMotos lm;
 
@@ -63,7 +64,7 @@ public class Main {
         credito=Consola.introducirEntero(principalMenu);
         ListadoSocios.precioMaximoMoto = credito;
         
-        while (opcion != 8) {
+        while (opcion != 9) {
             System.out.print(miMenu);
             opcion = Consola.introducirEntero("Introduce tu opción");
             System.out.println();
@@ -101,6 +102,10 @@ public class Main {
                     break;
                 }
                 case 8: {
+                    eliminarSocio(); //Guardar archivo con nombre personalizado y volcar datos.
+                    break;
+                }
+                case 9: {
                     guardarFichero(); //Guardar archivo con nombre personalizado y volcar datos.
                     break;
                 }
@@ -254,6 +259,21 @@ public class Main {
         int gastosMoto=(Consola.introducirEntero("Introduce los gastos"));
          moto.setGastos(gastosMoto+moto.getGastos());
     
+    }
+    public void eliminarSocio() {
+        String nombre = Consola.introducirCadena("Introduce el nombre (espacio = Cancelar)");
+        Socio socio1 = ls.buscarSocioNombre(nombre);
+
+        if (!nombre.equals("")) {
+
+            if (socio1 != null) {
+                System.out.println("El socio ha sido eliminado");
+                ls.eliminarSocio(socio1);
+            } else {
+                System.out.println("El socio intruducido no existe");
+            }
+        }
+        
     }
     
     /**
