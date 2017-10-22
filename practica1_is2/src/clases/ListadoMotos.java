@@ -17,12 +17,12 @@ public class ListadoMotos {
      */
     public ListadoMotos() {
         motos = new ArrayList<Moto>();
-        motos.add(new Moto("Vespa Primavera",125,2500,"1234BCD"));
-        motos.add(new Moto("Vespa Primavera",125,2500,"2345CDF"));
-        motos.add(new Moto("Motobenae Poney AG2",70,2300,"3456DFG"));
-        motos.add(new Moto("Bultaco",200,3800,"3456FGH"));
-        motos.add(new Moto("Guzzi Cardelino 73",75,1200,"4567GHJ"));
-        motos.add(new Moto("Duccati mini",49,4000,"5678HJK"));
+        motos.add(new Moto("Vespa Primavera",125,2500,"1234BCD",0));
+        motos.add(new Moto("Vespa Primavera",125,2500,"2345CDF",0));
+        motos.add(new Moto("Motobenae Poney AG2",70,2300,"3456DFG",0));
+        motos.add(new Moto("Bultaco",200,3800,"3456FGH",0));
+        motos.add(new Moto("Guzzi Cardelino 73",75,1200,"4567GHJ",0));
+        motos.add(new Moto("Duccati mini",49,4000,"5678HJK",0));
     }
     
     /**

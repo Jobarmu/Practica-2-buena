@@ -31,7 +31,8 @@ public class Main {
             + "4 - Listar en pantalla los miembros con motos en posesión.\n"
             + "5 - Listar todas las motos.\n"
             + "6 - Mostrar las cesiones realizadas.\n"
-            + "7 - Salir del programa.\n\n";
+            + "7 - Suma los Gastos a una moto.\n"
+            + "8 - Salir del programa.\n\n";
     ListadoSocios ls;
     ListadoMotos lm;
 
@@ -61,7 +62,8 @@ public class Main {
         System.out.print(principalMenu);
         credito=Consola.introducirEntero(principalMenu);
         ListadoSocios.precioMaximoMoto = credito;
-        while (opcion != 7) {
+        
+        while (opcion != 8) {
             System.out.print(miMenu);
             opcion = Consola.introducirEntero("Introduce tu opción");
             System.out.println();
@@ -95,6 +97,10 @@ public class Main {
                     break;
                 }
                 case 7: {
+                     registrarGastos();//Suma Otros gastos añadidos a una moto
+                    break;
+                }
+                case 8: {
                     guardarFichero(); //Guardar archivo con nombre personalizado y volcar datos.
                     break;
                 }
@@ -154,7 +160,7 @@ public class Main {
         if (m.getPrecio() != -1){
             int creditoMaximo = 0;
             for (Socio socio : ls.getSocios()) {
-                if (credito - socio.getPrecioMotosActuales() > creditoMaximo) {
+                if (credito  - socio.getPrecioMotosActuales() > creditoMaximo) {
                     creditoMaximo = credito - socio.getPrecioMotosActuales();
                 }
             }
@@ -166,6 +172,7 @@ public class Main {
                 m.setModelo(Consola.introducirCadena("Introduce el modelo"));
                 m.setCilindrada(Consola.introducirEntero("Introduce la cilindrada"));
                 m.setMatricula(Consola.introducirCadena("Introduce la matrícula"));
+                m.setGastos(Consola.introducirEntero("Introduce los gastos"));
                 Socio cesionario = null;
                 if (m.getCesionActual() != null) {
                     cesionario = m.getCesionActual().getCedido();
@@ -241,7 +248,13 @@ public class Main {
     public void listarCesiones() {
         lm.listarHistorialCesiones();
     }
+    public void registrarGastos() {
+        Moto moto= new Moto();
+        moto = lm.buscarMotoID(Consola.introducirEntero("Introduce la ID de la moto"));
+        int gastosMoto=(Consola.introducirEntero("Introduce los gastos"));
+         moto.setGastos(gastosMoto+moto.getGastos());
     
+    }
     
     /**
      * Función guardarFichero.

@@ -16,22 +16,34 @@ public class Moto {
     private int precio;             //Precio de la moto en €
     private String matricula;       //Matrícula del vehículo
     private static int proximoIDMoto = 0;   //Varible Static para controlar ID de moto.
-    private ArrayList<Cesion> cesiones;     //Arraylist de Cesiones.
+    private ArrayList<Cesion> cesiones; //Arraylist de Cesiones.
+    private int gastos;
 
     /**
      * Constructor con argumentos
      * @param modelo
      * @param cilindrada
      * @param precio
+     * @param <error>
      * @param matricula
+     * @param gastos
      */
-    public Moto(String modelo, int cilindrada, int precio, String matricula) {
+    public Moto(String modelo, int cilindrada, int precio, String matricula,int gastos) {
         this.modelo = modelo;
         this.cilindrada = cilindrada;
         this.precio = precio;
         this.matricula = matricula;
+        this.gastos = gastos;
         IDmoto = ++proximoIDMoto; //Incremento del IDmoto.
         cesiones = new ArrayList<Cesion>();
+    }
+
+    public int getGastos() {
+        return gastos;
+    }
+
+    public void setGastos(int gastos) {
+        this.gastos = gastos;
     }
 
     /**
@@ -140,7 +152,7 @@ public class Moto {
 
     @Override
     public String toString() {
-        return "ID: " + IDmoto + " - Modelo: " + modelo + " - Cilindrada: " + cilindrada + " - " + "Matrícula: " + matricula + " - " + precio + "€";
+        return "ID: " + IDmoto + " - Modelo: " + modelo + " - Cilindrada: " + cilindrada + " - " + "Matrícula: " + matricula + " - " + precio + "€ "+ gastos+"€";
     }
 
     /**
